@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/api/models/Movie.dart';
+import 'package:test_app/presentation/detail/MovieDetailPage.dart';
 
 class MovieRow extends StatelessWidget {
   final Movie _movie;
@@ -70,22 +71,22 @@ class MovieRow extends StatelessWidget {
       ),
     );
 
-    return new GestureDetector(
-        onTap: () => Navigator.of(context).push(new PageRouteBuilder(
-            //pageBuilder: (_, __, ___) => new DetailPage(planet),
-            )),
-        child: new Container(
-          height: 120.0,
-          margin: const EdgeInsets.symmetric(
-            vertical: 16.0,
-            horizontal: 16.0,
-          ),
-          child: new Stack(
-            children: <Widget>[
-              movieCard,
-              movieThumbnail,
-            ],
-          ),
-        ));
+    return new Container(
+      height: 120.0,
+      margin: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+      child: new FlatButton(
+        onPressed: () => _navigateTo(context),
+        child: new Stack(
+          children: <Widget>[
+            movieCard,
+            movieThumbnail,
+          ],
+        ),
+      ),
+    );
+  }
+
+  _navigateTo(context) {
+    Navigator.push(context, new MaterialPageRoute(builder: (_) => new MovieDetailPage(_movie)));
   }
 }
