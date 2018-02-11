@@ -16,6 +16,7 @@ class RemoteMovieService implements MovieService {
 
   RemoteMovieService({Client client}) : this._client = client ?? new Client();
 
+  @override
   Observable<MoviesResult> discoverMovies() {
     final path = "discover/movie";
 
