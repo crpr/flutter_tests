@@ -1,4 +1,4 @@
-import 'package:test_app/api/models/Movie.dart';
+import 'package:test_app/api/services/RemoteMovieService.dart';
 import 'package:test_app/injection/Injector.dart';
 import 'package:test_app/presentation/list/MovieListPage.dart';
 
@@ -20,11 +20,10 @@ class MovieListPresenter implements IMovieListPresenter {
   void loadMovies() {
     assert(_view != null);
 
-    _service.fetch()
-        .then((items) => _view.onLoadMoviesComplete(items))
-        .catchError((onError) {
-          _view.onLoadMoviesError();
-        });
+    _service.discoverMovies()
+        .map((result) => result.movies)
+        .doOnError(() => _view.onLoadMoviesError())
+        .listen((movies) => _view.onLoadMoviesComplete(movies));
   }
 
   @override

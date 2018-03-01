@@ -1,14 +1,9 @@
-import 'package:test_app/api/models/Movie.dart';
 import 'package:test_app/api/services/RemoteMovieService.dart';
 import 'package:test_app/presentation/list/MovieListPresenter.dart';
 
-enum BuildType {
-  MOCK,
-  REMOTE
-}
+enum BuildType { MOCK, REMOTE }
 
 class Injector {
-
   static final Injector _singleton = new Injector._internal();
 
   static BuildType _buildType;
@@ -36,5 +31,4 @@ class Injector {
   IMovieListPresenter get movieListPresenter {
     return new MovieListPresenter();
   }
-
 }

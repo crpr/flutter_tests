@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/presentation/list/MovieListPage.dart';
 import 'package:test_app/injection/Injector.dart';
+import 'package:test_app/presentation/list/MovieListPage.dart';
 
 class MoviesApp extends StatelessWidget {
   @override

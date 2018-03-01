@@ -1,7 +1,4 @@
-import 'dart:async';
-
 class Movie {
-
   static final String baseImagePath = "https://image.tmdb.org/t/p/w500";
 
   final int movieId;
@@ -18,37 +15,33 @@ class Movie {
   final double voteAverage;
   final int voteCount;
 
-  const Movie({this.movieId, this.adult, this.backdropPath, this.originalLanguage,
-              this.originalTitle, this.overview, this.releaseDate, this.posterPath,
-              this.popularity, this.title, this.video, this.voteAverage, this.voteCount});
+  const Movie(
+      {this.movieId,
+      this.adult,
+      this.backdropPath,
+      this.originalLanguage,
+      this.originalTitle,
+      this.overview,
+      this.releaseDate,
+      this.posterPath,
+      this.popularity,
+      this.title,
+      this.video,
+      this.voteAverage,
+      this.voteCount});
 
-  Movie.fromMap(Map<String, dynamic>  map) :
-        movieId = map['id'],
-        adult = map['adult'],
-        backdropPath = baseImagePath+"${map['backdrop_path']}",
-        originalLanguage = "${map['original_language']}",
-        originalTitle = "${map['original_title']}",
-        overview = "${map['overview']}",
-        releaseDate = "${map['release_date']}",
-        posterPath = baseImagePath+"${map['poster_path']}",
-        popularity = map['popularity'],
-        title = "${map['title']}",
-        video = map['video'],
-        voteAverage = double.parse("${map['vote_average']}"),
-        voteCount = map['vote_count'];
-
-}
-
-abstract class MovieService {
-  Future<List<Movie>> fetch();
-}
-
-class FetchDataException implements Exception {
-  String _message;
-
-  FetchDataException(this._message);
-
-  String toString() {
-    return "Exception: $_message";
-  }
+  Movie.fromJson(Map<String, Object> json)
+      : movieId = json['id'],
+        adult = json['adult'],
+        backdropPath = "$baseImagePath${json['backdrop_path']}",
+        originalLanguage = "${json['original_language']}",
+        originalTitle = "${json['original_title']}",
+        overview = "${json['overview']}",
+        releaseDate = "${json['release_date']}",
+        posterPath = "$baseImagePath${json['poster_path']}",
+        popularity = json['popularity'],
+        title = "${json['title']}",
+        video = json['video'],
+        voteAverage = double.parse("${json['vote_average']}"),
+        voteCount = json['vote_count'];
 }
